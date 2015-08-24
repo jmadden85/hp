@@ -15,7 +15,7 @@
         <p>Current Bid: {{auction.currentBid | currency}}</p>
         <label for="yourBid">Enter Bid</label>
         <input type="number" name="yourBid" ng-model="offer.bid" value="0" />
-        <button ng-click="bidder.bid(auction.name, offer, auction.currentBid)">Bid</button>
+        <button ng-click="bidder.bid(auction.name, offer)">Bid</button>
       </div>
     </li>
   </ul>

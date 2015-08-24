@@ -1,14 +1,13 @@
 'use strict';
 (function() {
 
-  var AuctioneerCtrl = function (localStorage) {
+  // Add the controller to the app
+  auction.controller('AuctioneerCtrl', AuctioneerCtrl);
 
+  function AuctioneerCtrl (localStorage) {
+
+    // Assign
     var auctioneer = this;
-    var refresh;
-    var addAuction;
-    var startAuction;
-    var endAuction;
-    var awardItem;
 
     auctioneer.refresh = refresh;
     auctioneer.addAuction = addAuction;
@@ -17,11 +16,15 @@
     auctioneer.awardItem = awardItem;
     auctioneer.auctions = localStorage.query('items');
 
-    refresh = function () {
+
+    // Get updated items
+    function refresh () {
       auctioneer.auctions = localStorage.query('items');
     };
 
-    addAuction = function (item, isValid) {
+
+    // Create a new auction
+    function addAuction (item, isValid) {
       var itemObj = {
         name           : item.name,
         reserve        : parseFloat(item.reserve, 10),
@@ -33,7 +36,7 @@
       };
 
       // Make sure this item doesn't exist
-      var checkAuctions = function (items, item) {
+      var checkAuctions = function  (items, item) {
         var unique = true;
 
         items.map(function (el) {
@@ -59,17 +62,21 @@
       itemForm.name.focus();
     };
 
-    startAuction = function (item) {
+
+    // Start an auction
+    function startAuction (item) {
       if (item.auctionStarted) {
         return false;
       }
       auctioneer.auctions = localStorage.update('items', item.name, {
         auctionStarted: true,
         status        : 'In progress'
-      });
+      }).arr;
     };
 
-    endAuction = function (item) {
+
+    // End an auction
+    function endAuction (item) {
       // Grab the item
       var thisItem = localStorage.get('items', item).obj;
 
@@ -85,12 +92,15 @@
         status         : status,
         auctionFinished: true,
         auctionStarted : false
-      });
-
-      this.awardItem(thisItem);
+      }).arr;
+      if (thisItem.currentBid) {
+        auctioneer.awardItem(thisItem);
+      }
     };
 
-    awardItem = function (item) {
+
+    // Award an item to a bidder
+    function awardItem (item) {
       var bidder = localStorage.get('bidders', item.highBidder).obj;
       var biddersWonItems = bidder.wonItems;
 
@@ -105,7 +115,5 @@
     };
 
   };
-
-  auction.controller('AuctioneerCtrl', AuctioneerCtrl);
 
 }());
