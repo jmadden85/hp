@@ -1,0 +1,16 @@
+{
+  "name": "consecutive",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5",
+    "sinon": "^1.16.1"
+  }
+}

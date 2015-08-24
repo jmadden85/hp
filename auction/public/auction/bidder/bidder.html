@@ -1,0 +1,29 @@
+<form name="signInForm" novalidate ng-submit="bidder.addBidder(user)" ng-show="!bidder.currentBidder">
+  <label for="name">User Name</label>
+  <input type="text" name="name" ng-model="user.name" required="" />
+
+  <input type="submit" ng-disabled="signInForm.$invalid" value="Sign In" />
+</form>
+
+<section ng-show="bidder.currentBidder">
+  <button ng-click="bidder.refresh()">Refresh</button>
+  <ul class="runningAuctions" ng-show="bidder.currentBidder">
+    <li><h1>Open Auctions</h1></li>
+    <li ng-repeat="auction in bidder.auctions">
+      <div class="auctionBlock">
+        <h2>Item: {{auction.name}}</h2>
+        <p>Current Bid: {{auction.currentBid | currency}}</p>
+        <label for="yourBid">Enter Bid</label>
+        <input type="number" name="yourBid" ng-model="offer.bid" value="0" />
+        <button ng-click="bidder.bid(auction.name, offer, auction.currentBid)">Bid</button>
+      </div>
+    </li>
+  </ul>
+
+  <ul class="wonItems" ng-show="bidder.currentBidder">
+    <li><h1>Won Items</h1></li>
+    <li ng-repeat="item in bidder.currentBidder.wonItems">
+      <h2>Item: {{item.name}}</h2>
+      <p>Cost: {{item.winningBid}}</p>
+  </ul>
+</section>

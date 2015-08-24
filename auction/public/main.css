@@ -1,0 +1,66 @@
+a, label, input, button {
+  display:block;
+  margin:5px 0;
+}
+
+li {
+  list-style-type:none;
+}
+
+input[type="submit"] {
+  margin:10px 0;
+}
+
+button {
+  height:35px;
+}
+
+.auctions {
+  border:1px solid #000;
+  border-top:none;
+  width:90%;
+  margin:10px auto;
+  padding:0;
+}
+
+.runningAuctions, .wonItems {
+  border:1px solid #000;
+  width:40%;
+  float:left;
+  margin:0 3% 0 0;
+}
+
+.item.bold div {
+  font-weight:bold;
+}
+
+.item {
+  list-style-type:none;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  justify-content:space-around;
+  align-items:flex-start;
+  align-content:stretch;
+  font-size:16px;
+  font-family:arial;
+  width:100%;
+  border-top:1px solid #000;
+  padding:5px 0;
+}
+
+.item div {
+  text-align:center;
+  width:11%;
+}
+
+.item .endAuction, .item .startAuction {
+  background:grey;
+  cursor:pointer;
+  padding:2px;
+  border-radius:3px;
+}
+
+.item .endAuction.hide, .item .startAuction.hide {
+  visibility:hidden;
+}

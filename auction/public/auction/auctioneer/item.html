@@ -1,0 +1,13 @@
+<li class="item">
+  <div class="name">{{item.name}}</div>
+  <div class="reserve">{{item.reserve | currency}}</div>
+  <div class="bid">{{item.currentBid | currency}}</div>
+  <div class="highBidder">{{item.highBidder}}</div>
+  <div class="status">{{item.status}}</div>
+  <div class="startAuction" ng-click="start()" ng-class="{'hide': item.auctionFinished || item.auctionStarted}">
+    Start Auction
+  </div>
+  <div class="endAuction" ng-click="end()" ng-class="{'hide': item.auctionFinished || !item.auctionStarted}">
+    End Auction
+  </div>
+</li>

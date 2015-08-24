@@ -1,0 +1,30 @@
+<form name="itemForm" novalidate ng-submit="auction.addAuction(item, itemForm.$valid)">
+  <label for="name">Item Name</label>
+  <input type="text" name="name" ng-model="item.name" required="" />
+
+  <label for="reserve">Reserve Price</label>
+  <input type="number" name="reserve" ng-model="item.reserve" required="" />
+
+  <input type="submit" ng-disabled="itemForm.$invalid" id="saveAuction" value="Create Auction" />
+</form>
+
+<button ng-click="auction.refresh()">Refresh</button>
+
+<ul class="auctions">
+  <li class="item bold">
+    <div>Item Name</div>
+    <div>Reserve Price</div>
+    <div>Current Bid</div>
+    <div>High Bidder</div>
+    <div>Auction Status</div>
+    <div>Start Auctions</div>
+    <div>Close Auctions</div>
+  </li>
+  <item
+    ng-repeat="item in auction.auctions"
+    item="item"
+    start="auction.startAuction(item)"
+    end="auction.endAuction(item.name)"
+  >
+  </item>
+</ul>
