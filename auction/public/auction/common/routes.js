@@ -1,7 +1,7 @@
 auction.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     $routeProvider
-    .when('/auction', {
+    .when('/', {
       templateUrl: '/auction/public/auction/common/home.html'
     })
     .when('/auctioneer', {
@@ -16,7 +16,7 @@ auction.config(['$routeProvider', '$locationProvider', function ($routeProvider,
       reloadOnSearch: false
     })
     .otherwise({
-      redirectTo: '/auction'
+      redirectTo: '/'
     });
 
     $locationProvider.html5Mode({
